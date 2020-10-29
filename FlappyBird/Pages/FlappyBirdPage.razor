@@ -1,11 +1,12 @@
 ﻿@page "/"
 @using System.Globalization;
- 
-<div id="game" @onclick="Action">
-    <img src="/images/flappybird.png" height="50" width="50" style="margin: @Game.YPosition 0 0 @Game.XPosition; transform:rotate(@Game.Rotation);"/>
+
+<div class=@(Game.IsRunning ? "movingBackground" : "stillBackground") @onclick="Action">
+    <h2>Score: @Game.Score</h2>
+    <img src="/images/flappybird.png" height="50" width="50" style="margin: @Game.Bird.Y.ToPixelString() 0 0 @Game.Bird.X.ToPixelString(); transform:rotate(@Game.Bird.Rotation.ToDegString());" />
     @foreach (var pipe in Game.Pipes)
     {
-        <img src="/images/pipe.png" height="50" width="50" style="margin: 20% 0 0 20%; transform:rotate(@(pipe.Inverted ? "180deg" : "0deg"));"/>
+        <img src="/images/pipe.png" height="@pipe.Height" width="50" style="margin: @pipe.Y.ToPixelString() 0 0 @pipe.X.ToPixelString(); transform:rotate(@pipe.Rotation.ToDegString());" />
     }
 </div>
 

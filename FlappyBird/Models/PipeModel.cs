@@ -3,21 +3,22 @@
     public class PipeModel
     {
         public double Y { get; set; }
-        public double X { get; set; }
-        public double Vx { get; set; }
-        public bool Inverted { get; set; }
+        public double X { get; set; } = 2500;
+        public double Vx { get; set; } = -10;
+        public double Rotation { get; set; }
+        public int Height { get; set; }
 
-        public PipeModel(bool inverted)
+        public PipeModel(bool inverted, int height)
         {
-            Inverted = inverted;
-            X = 1;
+            Height = height;
             if (inverted)
             {
                 Y = 0;
+                Rotation = 180;
             }
             else
             {
-                Y = 1;
+                Y = 800-height;
             }
         }
 
