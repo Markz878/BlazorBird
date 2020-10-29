@@ -1,0 +1,62 @@
+﻿@import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
+
+
+body{
+    overflow: hidden;
+    height: 100%;
+}
+
+.valid.modified:not([type=checkbox]) {
+    outline: 1px solid #26b050;
+}
+
+.validation-message {
+    color: red;
+}
+
+#blazor-error-ui {
+    background: lightyellow;
+    bottom: 0;
+    box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
+    display: none;
+    left: 0;
+    padding: 0.6rem 1.25rem 0.7rem 1.25rem;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+}
+
+#blazor-error-ui .dismiss {
+    cursor: pointer;
+    position: absolute;
+    right: 0.75rem;
+    top: 0.5rem;
+}
+
+#game {
+    width: 100%;
+    height: 1100px;
+    background-image: url(../images/background.jpg);
+    background-repeat: repeat-x;
+    overflow: hidden;
+    animation: moveBackground 15s linear infinite;
+    will-change: background-position-x;
+}
+
+@keyframes moveBackground{
+    0% {
+        background-position-x: 3200px;
+    }
+    100% {
+        background-position-x: 0;
+    }
+}
+
+img {
+    position: absolute;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: -moz-none;
+    -ms-user-select: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}

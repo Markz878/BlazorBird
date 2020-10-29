@@ -1,0 +1,11 @@
+﻿@page "/"
+@using System.Globalization;
+ 
+<div id="game" @onclick="Action">
+    <img src="/images/flappybird.png" height="50" width="50" style="margin: @Game.YPosition 0 0 @Game.XPosition; transform:rotate(@Game.Rotation);"/>
+    @foreach (var pipe in Game.Pipes)
+    {
+        <img src="/images/pipe.png" height="50" width="50" style="margin: 20% 0 0 20%; transform:rotate(@(pipe.Inverted ? "180deg" : "0deg"));"/>
+    }
+</div>
+
