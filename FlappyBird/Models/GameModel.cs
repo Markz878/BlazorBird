@@ -10,14 +10,14 @@ namespace FlappyBird.Models
     {
         public bool IsRunning { get; set; }
         public int Score { get; set; }
-        public BirdModel Bird { get; } = new BirdModel();
+        public BirdModel Bird { get; } = new BirdModel() { ImagePath = "/images/flappybird2.png" };
         public List<PipeModel> Pipes { get; } = new List<PipeModel>();
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        readonly Random random = new Random();
+        private readonly Random random = new Random();
 
-        byte pipeInterval = 0;
+        private byte pipeInterval;
 
         public async Task MainLoop()
         {
@@ -36,7 +36,7 @@ namespace FlappyBird.Models
                 CheckBorderCollision();
                 CheckPipeCollision();
                 Score++;
-                OnPropertyChanged();
+                PropertyChanged?.Invoke(this, null);
                 await Task.Delay(10);
             }
         }
@@ -81,28 +81,22 @@ namespace FlappyBird.Models
                 pipeInterval = 0;
                 Pipes.Add(new PipeModel(random.Next(0, 2) == 0, random.Next(400, 650)));
             }
-
         }
 
         private void EndGame()
         {
             IsRunning = false;
+            Bird.ImagePath = "/images/flappybird2-dizzy.png";
         }
 
         public void Restart()
         {
             Score = 0;
             Pipes.Clear();
+            Bird.ImagePath = "/images/flappybird2.png";
             IsRunning = true;
             Bird.Y = 500;
             Bird.Vy = 0;
         }
-
-        protected void OnPropertyChanged()
-        {
-            PropertyChanged?.Invoke(this, null);
-        }
-
-
     }
 }

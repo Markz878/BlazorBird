@@ -6,6 +6,7 @@
         public double X { get; set; } = 300;
         public double Vy { get; set; } = 0;
         public double Rotation => 4 * Vy;
+        public string ImagePath { get; set; }
 
         public void Move()
         {
