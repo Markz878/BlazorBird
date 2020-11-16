@@ -1,6 +1,6 @@
 ﻿using System.Globalization;
 
-namespace FlappyBird.Methods
+namespace BlazorBird.Methods
 {
     public static class ExtensionMethods
     {

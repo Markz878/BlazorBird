@@ -1,23 +1,24 @@
-﻿using System;
+﻿using BlazorBird.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Threading.Tasks;
 using static System.Math;
 
-namespace FlappyBird.Models
+namespace BlazorBird.Models
 {
     public class GameModel : INotifyPropertyChanged
     {
         public bool IsRunning { get; set; }
         public int Score { get; set; }
-        public BirdModel Bird { get; } = new BirdModel() { ImagePath = "/images/flappybird2.png" };
+        public BirdModel Bird { get; } = new BirdModel() { ImagePath = birdImage };
         public List<PipeModel> Pipes { get; } = new List<PipeModel>();
 
         public event PropertyChangedEventHandler PropertyChanged;
-
         private readonly Random random = new Random();
-
         private byte pipeInterval;
+        private const string birdImage = "/images/bird.png";
+        private const string dizzyBirdImage = "/images/bird-dizzy.png";
 
         public async Task MainLoop()
         {
@@ -37,24 +38,25 @@ namespace FlappyBird.Models
                 CheckPipeCollision();
                 Score++;
                 PropertyChanged?.Invoke(this, null);
-                await Task.Delay(10);
+                await Task.Delay(20);
             }
         }
 
         private void CheckPipeCollision()
         {
-            for (int i = 0; i < Pipes.Count; i++)
+            int n = Min(2, Pipes.Count);
+            for (int i = 0; i < n; i++)
             {
-                if (Abs(Bird.X - Pipes[i].X) < 50)
+                if (Abs(Bird.X - Pipes[i].X) < 40)
                 {
-                    if (Pipes[i].Rotation == 0)
+                    if (Pipes[i].Rotation == 0) // Pipe from the ground
                     {
                         if (Bird.Y > Pipes[i].Y)
                         {
                             EndGame();
                         }
                     }
-                    else
+                    else // Pipe from the sky
                     {
                         if (Bird.Y < Pipes[i].Y + Pipes[i].Height)
                         {
@@ -76,7 +78,7 @@ namespace FlappyBird.Models
         private void AddPipe()
         {
             pipeInterval++;
-            if (pipeInterval>100)
+            if (pipeInterval > 100)
             {
                 pipeInterval = 0;
                 Pipes.Add(new PipeModel(random.Next(0, 2) == 0, random.Next(400, 650)));
@@ -86,14 +88,14 @@ namespace FlappyBird.Models
         private void EndGame()
         {
             IsRunning = false;
-            Bird.ImagePath = "/images/flappybird2-dizzy.png";
+            Bird.ImagePath = dizzyBirdImage;
         }
 
         public void Restart()
         {
             Score = 0;
             Pipes.Clear();
-            Bird.ImagePath = "/images/flappybird2.png";
+            Bird.ImagePath = birdImage;
             IsRunning = true;
             Bird.Y = 500;
             Bird.Vy = 0;

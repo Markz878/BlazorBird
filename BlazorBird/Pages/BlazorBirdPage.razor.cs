@@ -1,12 +1,12 @@
-﻿using FlappyBird.Models;
+﻿using BlazorBird.Models;
 using Microsoft.AspNetCore.Components.Web;
 using System;
 using System.ComponentModel;
 using System.Threading.Tasks;
 
-namespace FlappyBird.Pages
+namespace BlazorBird.Pages
 {
-    public partial class FlappyBirdPage : IDisposable
+    public partial class BlazorBirdPage : IDisposable
     {
         public GameModel Game { get; } = new GameModel();
 
@@ -14,7 +14,6 @@ namespace FlappyBird.Pages
         {
             Game.PropertyChanged += Game_PropertyChanged;
         }
-
 
         public async Task Action(MouseEventArgs e)
         {

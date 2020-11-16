@@ -1,4 +1,4 @@
-﻿namespace FlappyBird.Models
+﻿namespace BlazorBird.Models
 {
     public class PipeModel
     {

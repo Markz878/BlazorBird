@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using System.Threading.Tasks;
 
-namespace FlappyBird
+namespace BlazorBird
 {
     public class Program
     {
