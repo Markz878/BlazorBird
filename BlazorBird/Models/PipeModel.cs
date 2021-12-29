@@ -18,7 +18,7 @@
             }
             else
             {
-                Y = 800-height;
+                Y = 800 - height;
             }
         }
 

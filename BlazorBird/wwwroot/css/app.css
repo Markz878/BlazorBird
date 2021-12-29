@@ -27,6 +27,10 @@
     top: 0.5rem;
 }
 
+.score {
+    z-index: 1000;
+}
+
 .stillBackground {
     width: 100%;
     height: 1100px;

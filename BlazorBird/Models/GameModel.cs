@@ -1,5 +1,4 @@
-﻿using BlazorBird.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Threading.Tasks;
@@ -7,15 +6,14 @@ using static System.Math;
 
 namespace BlazorBird.Models
 {
-    public class GameModel : INotifyPropertyChanged
+    public class GameModel
     {
         public bool IsRunning { get; set; }
         public int Score { get; set; }
         public BirdModel Bird { get; } = new BirdModel() { ImagePath = birdImage };
         public List<PipeModel> Pipes { get; } = new List<PipeModel>();
 
-        public event PropertyChangedEventHandler PropertyChanged;
-        private readonly Random random = new Random();
+        public event Action PropertyChanged;
         private byte pipeInterval;
         private const string birdImage = "/images/bird.png";
         private const string dizzyBirdImage = "/images/bird-dizzy.png";
@@ -37,7 +35,7 @@ namespace BlazorBird.Models
                 CheckBorderCollision();
                 CheckPipeCollision();
                 Score++;
-                PropertyChanged?.Invoke(this, null);
+                PropertyChanged?.Invoke();
                 await Task.Delay(20);
             }
         }
@@ -51,7 +49,7 @@ namespace BlazorBird.Models
                 {
                     if (Pipes[i].Rotation == 0) // Pipe from the ground
                     {
-                        if (Bird.Y > Pipes[i].Y)
+                        if (Bird.Y + Bird.Size > Pipes[i].Y)
                         {
                             EndGame();
                         }
@@ -81,7 +79,7 @@ namespace BlazorBird.Models
             if (pipeInterval > 100)
             {
                 pipeInterval = 0;
-                Pipes.Add(new PipeModel(random.Next(0, 2) == 0, random.Next(400, 650)));
+                Pipes.Add(new PipeModel(Random.Shared.Next(0, 2) == 0, Random.Shared.Next(400, 650)));
             }
         }
 

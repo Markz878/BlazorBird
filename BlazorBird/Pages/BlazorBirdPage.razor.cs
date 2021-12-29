@@ -1,7 +1,6 @@
 ﻿using BlazorBird.Models;
 using Microsoft.AspNetCore.Components.Web;
 using System;
-using System.ComponentModel;
 using System.Threading.Tasks;
 
 namespace BlazorBird.Pages
@@ -31,7 +30,7 @@ namespace BlazorBird.Pages
             }
         }
 
-        private void Game_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        private void Game_PropertyChanged()
         {
             StateHasChanged();
         }
@@ -39,6 +38,7 @@ namespace BlazorBird.Pages
         public void Dispose()
         {
             Game.PropertyChanged -= Game_PropertyChanged;
+            GC.SuppressFinalize(this);
         }
     }
 }
