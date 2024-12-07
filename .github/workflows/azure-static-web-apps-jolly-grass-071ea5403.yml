@@ -15,12 +15,6 @@ jobs:
           submodules: true
           lfs: false
 
-      - name: Minify tailwind output
-        working-directory: ./BlazorBird
-        run: |
-          npm install -D tailwindcss
-          npx tailwindcss -i Styles/input.css -o wwwroot/css/output.css --minify
-
       - name: Build And Deploy
         uses: Azure/static-web-apps-deploy@v1
         with:
