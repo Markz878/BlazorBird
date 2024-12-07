@@ -4,6 +4,7 @@
 		<TargetFramework>net9.0</TargetFramework>
 		<AssemblyName>BlazorBird</AssemblyName>
 		<RootNamespace>BlazorBird</RootNamespace>
+    <Nullable>enable</Nullable>
 		<BlazorEnableTimeZoneSupport>false</BlazorEnableTimeZoneSupport>
 		<InvariantGlobalization>true</InvariantGlobalization>
 	</PropertyGroup>

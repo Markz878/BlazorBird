@@ -1,0 +1,11 @@
+﻿@page "/"
+@using System.Globalization;
+
+<div id="gameArea" class="relative w-full h-screen bg-contain bg-repeat-x overflow-hidden bg-[url('../images/background.jpg')] @(Game.IsRunning ? "movingBackground" : "")" @onclick="Action">
+  <h2 class="z-50 text-lg font-bold m-4 select-none">Score: @Game.Score</h2>
+  <img src=@Game.Bird.ImagePath class="absolute select-none" style="width: @Game.Bird.Size.ToPixelString(); height: @Game.Bird.Size.ToPixelString(); left: @Game.Bird.X.ToPixelString(); top: @Game.Bird.Y.ToPixelString(); rotate: @Game.Bird.Rotation.ToDegString();" />
+  @foreach (var pipe in Game.Pipes)
+  {
+    <img src="/images/pipe.webp" class="absolute select-none" style="width: @pipe.Width.ToPixelString(); height: @pipe.Height.ToPixelString(); top: @pipe.Y.ToPixelString(); left: @pipe.X.ToPixelString(); transform:rotate(@pipe.Rotation.ToDegString());" />
+  }
+</div>

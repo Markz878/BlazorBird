@@ -1,26 +1,13 @@
 ﻿namespace BlazorBird.Models
 {
-    public class PipeModel
+    public record PipeModel
     {
         public double Y { get; set; }
-        public double X { get; set; } = 2500;
-        public double Vx { get; set; } = -10;
+        public double X { get; set; }
+        public double Vx { get; set; }
         public double Rotation { get; set; }
-        public int Height { get; set; }
-
-        public PipeModel(bool inverted, int height)
-        {
-            Height = height;
-            if (inverted)
-            {
-                Y = 0;
-                Rotation = 180;
-            }
-            else
-            {
-                Y = 800 - height;
-            }
-        }
+        public double Height { get; set; }
+        public double Width { get; set; }
 
         public void Move()
         {
