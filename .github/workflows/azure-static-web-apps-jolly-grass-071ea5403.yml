@@ -13,6 +13,7 @@ jobs:
       - uses: actions/checkout@v3
         with:
           submodules: true
+          lfs: false
 
       - name: Minify tailwind output
         working-directory: ./BlazorBird
@@ -27,5 +28,6 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }} # Used for Github integrations (i.e. PR comments)
           action: "upload"
           app_location: "BlazorBird" # App source code path
+          app_build_command: dotnet publish
           output_location: "wwwroot" # Built app content directory - optional
           skip_api_build: true
