@@ -30,6 +30,5 @@ jobs:
           # For more information regarding Static Web App workflow configurations, please visit: https://aka.ms/swaworkflowconfig
           app_location: "BlazorBird" # App source code path
           app_artifact_location: "wwwroot" # Built app content directory - optional
-          app_build_command: dotnet publish -o publish
-          output_location: "publish"
+          app_build_command: dotnet publish
           skip_api_build: true
